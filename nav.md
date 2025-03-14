@@ -47,3 +47,20 @@
     - pour pouvoir retracer les incidents
 
 
+# TLS(Transport Layer Security)
+
+- HTTPS
+    - Plus sur car utilise le protocole TLS
+    - évite attack Man in the middle
+    - la norme, évite alerte par nav
+    - utilisé TLS 1.2 ou 1.3
+
+- HSTS
+    - force accés en HTTPS
+    - config en en-tete HTTP avec Strict-Transport-Security
+
+- CT(certificate Transparacy)
+    - Protocal pour surveiller les certif SSL/TLS émis
+    - permet de check les illégitime
+    - a surveiller
+
