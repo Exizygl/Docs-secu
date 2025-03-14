@@ -234,3 +234,31 @@
 - bien config CORS
 
 - CSRF token
+    -utilisé pour éviter les attack CSRF
+
+- fetch
+    - a utilisé de préférence over XMLHttp request
+    - peut etre configuré (no-cors, cors, same-origin)
+    - interaction cache, referrer policy ainsi que subresource Integriti (SRI)
+
+
+# Html and JS
+
+- window.opner
+    - target="_blank" ouvre une nouvelle page est pa défaut peut avoir accés à window.opener.locatoion
+    - risque d utilisation de postMessage  pour vole d'info
+    - use rel ="noopener" pour protection
+
+- Cross origin ouverture
+    - possibilité  d'ouvrir le site dans une nouvelle fenetre pour injecté du contenu malveillant
+    - cross-origin-opener-policy peut etre utiliser pour éviter que post messages intercepte des données sensibles
+
+- mode strict
+    - Empêche l’utilisation de variables non déclarées
+    - Bloque l’usage de certaines fonctionnalités obsolètes
+    - Renforce la sécurité contre les injections de code (XSS)
+    - Améliore la maintenabilité du code
+- template string
+    - Ne jamais insérer directement du contenu utilisateur dans le DOM
+    - Utiliser des fonctions de sanitization comme safeTag
+    - Toujours encoder les caractères spéciaux (<, >, &)
