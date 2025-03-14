@@ -90,3 +90,63 @@
     - js
     - css
     - Fichier multimédia
+
+## CORS
+
+- Cors
+    - requête Cross-origin(demande envoyé avec en-tete Origin)
+    - réponse serveur (envoie origin accepté Access-Control-Allow-Origin: https://www.exemple.com ou *)
+    - verif nav(if yes YYYEEEAAAHHH, if no the no)
+
+## CSP (Content Security Policy)
+
+- CSP
+    - Permet de définir qu'elle resource sont autorisé
+
+- méthode
+    - En tete HTTP
+    ```
+    Content-Security-Policy: default-src 'self'; script-src 'self' https://trusted.cdn.com; report-uri /csp-violation-report-endpoint/
+
+    ```
+    - balise Méta
+    ```
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self';">
+
+    ```
+- plugin dans diff framework
+
+- Directive
+    - **script-src, style-src, img-src, media-src, object-src, font-src** : Spécifient les origines autorisées pour les JavaScript, CSS, images, médias (audio/vidéo), objets embarqués (comme PDF) et fontes.
+    - **child-src, frame-ancestors** : Définissent les origines autorisées pour les travailleurs (workers) et les frames (iframe).
+    - **form-action, connect-src** : Spécifient les origines vers lesquelles les formulaires peuvent être envoyés ou vers lesquelles des connexions asynchrones (XHR, Fetch, WebSockets, EventSource) peuvent être initiées.
+    - **default-src** : Spécifie la source par défaut pour toutes les ressources en l'absence de directives spécifiques.
+    - **Autres directives globales** : Telles que `upgrade-insecure-requests` (pour forcer les ressources en HTTP à être chargées en HTTPS), `block-all-mixed-content` (pour bloquer le contenu mixte en HTTPS), ou `sandbox` (pour appliquer des restrictions de fonctionnalités du navigateur).
+
+
+    - Les directives CSP acceptent des valeurs sous forme de liste de sources de contenu, qui peuvent être :
+        - **Origines** : URL complète (par exemple, `https://domaine.fr`), ou partie d’une origine avec des caractères génériques (par exemple, `*://*.domaine.fr:*`).
+        - **Mots-clés** :
+        - **'none'** : Désactive la prise en charge du type de ressource.
+        - **'self'** : Autorise la ressource provenant de la même origine que la page actuelle.
+        - **'unsafe-inline'** : Permet l'exécution de code inline (JavaScript ou CSS intégré dans la page HTML).
+        - **'unsafe-eval'** : Permet l’utilisation de fonctions d’évaluation de code JavaScript (comme `eval()`).
+        - **Empreintes ou nonce** : Autorise un script ou un style inline spécifique grâce à une empreinte ou un nonce sécurisé.
+        - **strict-dynamic** : Permet la propagation de l'autorisation pour les ressources chargées dynamiquement (niveau CSP 3).
+
+- Par défaut CSP bloque plusieurs vuln XSS et encourage les bonne pratiques 
+
+- Protection contre le clickjacking
+    - empéché l'iframemisation du site par un autre si pas dans la liste des origin added.
+
+
+
+# XSS et bonne pratique
+
+- Pas de méthode exécutent du code HTML ou JS seulement du texte
+- dissocier les donnée(HTML, CSS, JS séparer)
+- donner encoder (ex JSON)
+- échapement du contenu
+- vérif conformiter donnér
+- JSPN.parse() not Eval
+- API DOM sécuriser(textContent)
