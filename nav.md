@@ -98,6 +98,13 @@
     - réponse serveur (envoie origin accepté Access-Control-Allow-Origin: https://www.exemple.com ou *)
     - verif nav(if yes YYYEEEAAAHHH, if no the no)
 
+- security
+    - faire un preflight
+    - controler l'en tete origin coté serveur pour éviter les attck
+    - séparer web service sur d'autre domaine
+    - éviter des biblio qui font des appel CORS
+    - crossorigin="anonymous" pour protéger les authentifiant
+
 ## CSP (Content Security Policy)
 
 - CSP
