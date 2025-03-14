@@ -138,6 +138,18 @@
 
 - Protection contre le clickjacking
     - empéché l'iframemisation du site par un autre si pas dans la liste des origin added.
+    - X-Frame-Option pour certein nav
+
+- Rapport de violation
+    - envoie rapport a un URL
+    - option Report-only pour pas bloqué
+    - risque fuite info sur les vunérabilité
+    - risque sur la confidentialité
+    - augmentation de la surface d'attaque
+    - en congig pour etre safe
+
+- Maitrise rapport silencieux
+    -control des orgin pour ping
 
 
 
