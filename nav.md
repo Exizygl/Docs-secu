@@ -195,3 +195,35 @@
     - limiter envoie cross-site
     - valider et controle les cookies coté serveur
     - condidèrer les cookies comme volatile
+
+# XMLHttp et fetch
+
+ - requet XHR
+    - Eviter injection XSS via innerHTML, formater avec Json ou XML
+
+- API
+    - verififier sécurité de la pméthodes http
+
+- get
+    - risque
+        - données en clair dans l'url
+        - réponse peut etre en cache.
+        - peut etre intercepter
+    - use
+        - données publique (barre de recherche)
+        - pas de change server side.
+
+- post
+    - better
+        - no info in URL
+        - less chance of a interception
+        - avoid cache
+
+- Put
+    - even better
+        - Preflight CORS by default
+        - less chance of CSRF
+
+- bien config CORS
+
+- CSRF token
