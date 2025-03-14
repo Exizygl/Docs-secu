@@ -64,3 +64,29 @@
     - permet de check les illégitime
     - a surveiller
 
+# Mécanismes de Sécu web
+
+## SOP(Same-origin policy)
+
+- objectif
+  - éviter les attaques
+  - Pas de restriction pour la meme origin, restriction pour d'autre origin
+
+- Origin
+    - Définit par le protocole, la destination et le port
+    - protocole (https), domaine(www.toya.com), port(:80) par défaut 80 ou 443(https)
+
+- Cas particulier
+    - iframe (pas de commu entre les 2 origines)
+    - XMLHttp request et fetch bloqué sans CORS
+    - Web Storage et IndexedDB sont de la same origin
+    - cookie ont la meme origin(port pas compris)
+
+- contourner
+    - CORS
+    - Cross-document messaging / Web Messaging
+
+- pas affecté
+    - js
+    - css
+    - Fichier multimédia
