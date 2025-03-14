@@ -162,3 +162,36 @@
 - vérif conformiter donnér
 - JSPN.parse() not Eval
 - API DOM sécuriser(textContent)
+
+
+# Referrer policy
+- l'envoie de donner vers une nouvelle page pour dire d'ou le user vient dans l'entete referer-policy
+    - option pour limiter les info d'envoie(ex: https to http, diff origin)
+    - posibilité de congig pour chaque link
+
+# Web Storage, indexedb et cookies
+
+- Webstorage(local strorage et session storage)
+    - toutes meme origin can see them
+    - persistence donnée sensible
+    - à use pour pref only and no risky data.
+    - analyse de risque avant use
+    - préviligier cookies sécurisé et identififiant coté serveur de session temp.
+
+- indexedb
+    - Clé/objet
+    - SOP(pas de restriction)
+    - can be use in a web worker
+    - vulnérable au XSS
+    - pas restriction dans SOP
+    - use for non-critiq(ise en chache state)
+    - analyse risque avant
+
+- cookies
+    - pas stocké donnée sensible
+    - cloisonner les sessios en utilisant des noms de domaine distincts
+    - define path pour limiter le path cookie.
+    - utilisé secure pour l'envoie.
+    - limiter envoie cross-site
+    - valider et controle les cookies coté serveur
+    - condidèrer les cookies comme volatile
