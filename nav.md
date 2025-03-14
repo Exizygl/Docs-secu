@@ -1,4 +1,4 @@
-### Menaces et types d'attaques
+# Menaces et types d'attaques
 
 ## Danger
 - ressource compromise :
@@ -18,7 +18,7 @@
 - CSRF (Cross-Site Request Forgery): envoie d'une requete malveillant d'une origine vers une autre origine.
 
 
-### Bonne pratique
+# Bonne pratique
 
 - unité distinctes
     - intéraction bien définie
