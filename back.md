@@ -27,3 +27,21 @@
         - liste de blocage : Interdire les IP privées et internes.
         - Accepter uniquement HTTP/HTTPS.
         - tokens d’authentification : Le service externe doit générer un token que l’application devra inclure dans la requête pour prouver sa légitimité.
+
+# SQLi
+
+- SQLi se produit lorsque des entrées non sécurisées sont concaténées dans des requêtes SQL dynamiques
+
+- eviter
+    - requete avec concaténation de chaines
+    - empecher insertion malveillantes
+
+- protéger
+    - requêtes préparées
+        - Séparer SQL et donné envoyer
+        - Parameterized Queries
+    - procédures stockées sécurisées 
+    - valeur prédéfie si posible
+    - éciter échapement(marche pas toujours)
+    - least privilège
+    - creation de vue SQL
