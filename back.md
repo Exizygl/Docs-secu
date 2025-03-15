@@ -45,3 +45,16 @@
     - éciter échapement(marche pas toujours)
     - least privilège
     - creation de vue SQL
+
+# LFI/RFI
+- LFI
+    - inclure un ficher local dans une requete en manipulant l'entrée utilisateur
+    - protection
+        - verification des données utilisateurs
+        - liste blanche des fichiers accessibles
+- RFI
+    - inclure un fichier venant d'un autre serveur dans l'url pour l executer en chargant la page
+    - protection
+        - verifire l'url avant execution(adresse IP)
+        - allow_url_include = off en php same for allow_url_fopen
+        - whiteliste???
