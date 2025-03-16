@@ -139,3 +139,23 @@
     - laisser la possibilité de mot de passe long
 
 - Règle de conplexité 
+
+- délai d'expiration mot de passe
+    - trop court pour des truc pas sensible peut faire en sorte que le luser utilise des facile ou itératif
+
+- controle robustesse
+    - vérif dans basse de donnée compromis
+    - détection motif faible
+    - interdir xxx dernier mot de passe.
+
+- stockage
+    - hachage et sel.
+    - Utilisation de fonctions de dérivation de mots de passe memory-hard(scrypt ou argon2)
+
+- aide à récupération de compte
+    - mot de passe temporaire, lien, conatct support info
+
+- coffre-fort mot de passe
+
+- recommandation au users
+
