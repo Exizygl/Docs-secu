@@ -159,3 +159,10 @@
 
 - recommandation au users
 
+# facteur de possession
+
+- autentification multifacteur
+    - code pin pour activer le facteur de posseion
+
+- utilisé un composant qualifié ou certifier
+
