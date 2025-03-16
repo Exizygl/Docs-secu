@@ -36,3 +36,22 @@
 
 ## Menaces et attaques sur les facteurs inhérents (biométrie)
 - Leurrer le mécanisme biométrique
+
+# limitation des mot de passes
+- Mémorisation des mots de passe
+    - mots de passe simples et facilement mémorisable
+    - meme mote de passe réuse
+
+- Mots de passe robustes
+    - longs et complexes, intégrant des majuscules, minuscules, chiffres et caractères spéciaux.
+    - peuvent etre compliqué a mémo.
+
+- Gestion des mots de passe
+    - Coffre-fort de mots de passe
+    - reutilisation de mot de passe
+
+- Vulnérabilités liées à la gestion des mots de passe
+    - la réutilsation peut etre dangereux en cas de fuite de donnée.
+
+- recommentdation
+    - coffre ou multi facteur identification
