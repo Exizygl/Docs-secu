@@ -262,3 +262,13 @@
     - Ne jamais insérer directement du contenu utilisateur dans le DOM
     - Utiliser des fonctions de sanitization comme safeTag
     - Toujours encoder les caractères spéciaux (<, >, &)
+
+- web workers
+    - Js en arrière plan sans accés au DOM
+    - utile pour traitement non maitrisé
+    - instancié avec URL data: recommandé
+
+- Iframe
+    - controle l'accés au DOM du contenu externe
+    - 2eme origin pour avoid attack
+    - postMEssage doit etre use avec JSON strict pour avoid danger
