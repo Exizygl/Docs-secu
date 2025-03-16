@@ -116,3 +116,9 @@
     - zero info sur l'ehec au user
 
 - sensibilisation des users
+
+- révocation
+    - mise en place d'un processus de révoc
+    - moyen au user de demandé d'etre revoc
+    - délai de révocation rapide en fonction du risque
+
