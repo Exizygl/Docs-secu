@@ -122,3 +122,20 @@
     - moyen au user de demandé d'etre revoc
     - délai de révocation rapide en fonction du risque
 
+# facteur de connaissance
+
+- Politique de sécurité des mots de passe
+    - Catégorie de mots de passe (mémorisés ou non)
+    - Longueur des mots de passe
+    - Règles de complexité (types de caractères autorisés)
+    - Délai d'expiration des mots de passe
+    - Limitation des essais d'authentification
+    - Méthodes de conservation des mots de passe
+    - Méthode de recouvrement d'accès en cas de perte ou vol
+    - Coffre-fort de mots de passe
+
+- Longueur des mot de passes
+    - longueur minimal impossé
+    - laisser la possibilité de mot de passe long
+
+- Règle de conplexité 
