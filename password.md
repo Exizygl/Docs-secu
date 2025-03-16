@@ -166,3 +166,14 @@
 
 - utilisé un composant qualifié ou certifier
 
+# facteur inhérent
+
+- simple de use
+
+- compliqué a revoc
+
+- zero confidentialité
+
+- problème fiabilité
+
+- respect vie privée
