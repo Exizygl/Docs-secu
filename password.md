@@ -80,17 +80,39 @@
     - outil externe d'authentification augmente la surface d'attaque.
 
 # Cycle de vie
-    - création et renew
-        - création des facteur d'authentification dans un environement simple
-        - élement aléatoire de haute qualité, conforme au norme en vigueur
-        - facteur d'authen envoir par canl sécu
-        - process de renewal
+- création et renew
+    - création des facteur d'authentification dans un environement simple
+    - élement aléatoire de haute qualité, conforme au norme en vigueur
+    - facteur d'authen envoir par canl sécu
+    - process de renewal
     
-    - utilisation
-        - Éviter la réutilisation de mots de passe faibles.
-        - Mettre en place des mécanismes de verrouillage après plusieurs tentatives échouées.
-        - Surveiller les tentatives d'accès inhabituelles ou suspectes
+- utilisation
+    - Éviter la réutilisation de mots de passe faibles.
+    - Mettre en place des mécanismes de verrouillage après plusieurs tentatives échouées.
+    - Surveiller les tentatives d'accès inhabituelles ou suspectes
     
-    - révocation facteur
-        - révoc quand plus utilisé
-        - gestion éfficace de la révocation
+- révocation facteur
+    - révoc quand plus utilisé
+    - gestion éfficace de la révocation
+
+# Facteur d'utilisation
+- SMS
+    - envoie de code peut etre intercepté
+    - ne pas envoyer les facteur d'authentification par SMS
+
+- conserver l'historique d'identification
+
+- limitation tentavive sur une periode
+
+- canal sécurisé d'envoie
+    - TLS ou IPsec
+
+- limiter la durée de vie d'une session
+
+- protection des donnée identification stockée
+    - hash
+
+- information de L'echec d'authentification
+    - zero info sur l'ehec au user
+
+- sensibilisation des users
