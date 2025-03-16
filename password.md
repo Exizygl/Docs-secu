@@ -55,3 +55,42 @@
 
 - recommentdation
     - coffre ou multi facteur identification
+
+# L'authentification multifacteur (AMF)
+- Facteur de connaissance
+- Facteur de possession 
+- Facteur inhérent 
+- multifacteur =/= double facteur
+
+# Authentification forte vs. Authentification multifacteur
+- Authentification multifacteur (AMF)
+    - plusieur type de facteur
+- Autentification forte
+    - mot de passe compliqué
+    - Puce
+    - doit résister au attack
+    - OTP
+
+# Choix
+    - Analyse de Risque
+    - Pas de faux sentiments de sécurité
+    - exp user à prendre en compte(pas trop compliquer pour éviter qu'il note le mot de passe)
+    - prendre en compte la gestion de multifacteur
+    - contexte, en cas d'urgence un PIN est préféravle
+    - outil externe d'authentification augmente la surface d'attaque.
+
+# Cycle de vie
+    - création et renew
+        - création des facteur d'authentification dans un environement simple
+        - élement aléatoire de haute qualité, conforme au norme en vigueur
+        - facteur d'authen envoir par canl sécu
+        - process de renewal
+    
+    - utilisation
+        - Éviter la réutilisation de mots de passe faibles.
+        - Mettre en place des mécanismes de verrouillage après plusieurs tentatives échouées.
+        - Surveiller les tentatives d'accès inhabituelles ou suspectes
+    
+    - révocation facteur
+        - révoc quand plus utilisé
+        - gestion éfficace de la révocation
