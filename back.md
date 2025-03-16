@@ -58,3 +58,15 @@
         - verifire l'url avant execution(adresse IP)
         - allow_url_include = off en php same for allow_url_fopen
         - whiteliste???
+
+# XXE
+- attaque par fichier XML mal parser
+    - lecture fichier sensible
+    - SSRF
+    - Scanning de port interne
+    - attaque en recursion pour DDos
+
+- protection
+    - desactiver DTD et entité externe dans le parseur XML
+    - utiliser un parseur sécurisé
+    - validation de la structure XML
