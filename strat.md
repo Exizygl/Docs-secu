@@ -345,6 +345,8 @@ Nous devons protéger le mot de passe de la meilleur façon, il ya plusieur mesu
 
 - Limitation du nombre de tentative: quand un nombre de 10 tentatives a était esseye, l'utilisateur sera bloqué pour une dizaine de minute avec comme seul recour le changement de mot de passe
 
+- détection des motif simple(12345, date d'anniversaire,....)
+
 note: on ne dira jamais lors d'un echec si l'email ou le mot de passe est faux
 
 ### le changement de mot de passe
@@ -357,11 +359,15 @@ un token sera générer avec une durée de temps limité de temps de 15 minute, 
 
 l'utilisateur pourra cliqué sur le lien pour choisir un nouveau mot de passe
 
-### Restriction des dernier mot de passe
+## Restriction des dernier mot de passe
 
 on garde en mémoire le hache des 5 derniers mot de passe pour dire à l'utilisateur qu'ils ne sont pas réalisable, on fait cela en cas d'attaque pour éviter qu'un utilsateur réutilise en mode de passe qu'il a l'habitude qui peut etre compromie.
 
 
+## Pour les role plus important
 
+Dans le cas des employers de pire2pire qui ont accées a des information importante, on précaunise une authenfication plus forte, avec un facteur de possesion, après l'entrée du mode de passe confirmé, un SMS qui envoie un code sera envoyé, l'employé devra entré ce code pour ce connecté 
+
+une autre sécuriter que l'on peut mettre est une durée de vie pour un mot de passe, la personne devra changer sont mot de passe tous les mois.
 
 
