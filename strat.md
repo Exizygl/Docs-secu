@@ -27,7 +27,6 @@
     - Menace
     - limitation des mot de passes
     - L'authentification multifacteur (AMF)
-    - Authentification forte
     - Choix
     - Cycle de vie
     - les Facteurs
@@ -342,6 +341,25 @@ Nous devons protéger le mot de passe de la meilleur façon, il ya plusieur mesu
 - La complexiter du mot de passe: le mot de passe ne doit pas etre trop simple, il doit etre assez long et avoir des characters assez diversifié pour se protéger contre l'attaque de force brute, il est donc conseiller de mettre une taille minimun de 10 characters avec au moins une majuscule, une minuscule, un chiffre et un xgaracter spécial.
 
 - le hachage: avant d'etre encrypté le mot de passe doit etre  maské avec en le hachant avec un algoryteme de hachage on y rajoute un sel pour assurer la sécuriter et protéger des attaques de rainbow table.
+
+
+- Limitation du nombre de tentative: quand un nombre de 10 tentatives a était esseye, l'utilisateur sera bloqué pour une dizaine de minute avec comme seul recour le changement de mot de passe
+
+note: on ne dira jamais lors d'un echec si l'email ou le mot de passe est faux
+
+### le changement de mot de passe
+
+Le changement de mot de passe est une étape nécéssaire de toute application pour éviter de perdre des utilsateur qui on perdu accé à leur compte 
+
+le changement de mot de passe se fait en demandant l'email de l'utilisataire, on ne confirme pas si un compte correspond à l'email ou non pour éviter a un hackeur de pourvoir faire une liste de compte existant sur le site.
+
+un token sera générer avec une durée de temps limité de temps de 15 minute, il sera envoyer dans un lien dans l'email de l'utilsateur.
+
+l'utilisateur pourra cliqué sur le lien pour choisir un nouveau mot de passe
+
+### Restriction des dernier mot de passe
+
+on garde en mémoire le hache des 5 derniers mot de passe pour dire à l'utilisateur qu'ils ne sont pas réalisable, on fait cela en cas d'attaque pour éviter qu'un utilsateur réutilise en mode de passe qu'il a l'habitude qui peut etre compromie.
 
 
 
