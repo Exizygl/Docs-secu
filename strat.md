@@ -21,16 +21,12 @@
     - validation d'entrée
     - traitement des données et vérification des sorties
     - authentification
-        - jwt
+      
     - autorisation d'accés
     - Mot de passe
     - Menace
-    - limitation des mot de passes
-    - L'authentification multifacteur (AMF)
-    - Choix
-    - Cycle de vie
-    - les Facteurs
-    
+    - jwt
+    - waf
    
 - Front
     - TLS
@@ -369,5 +365,20 @@ on garde en mémoire le hache des 5 derniers mot de passe pour dire à l'utilisa
 Dans le cas des employers de pire2pire qui ont accées a des information importante, on précaunise une authenfication plus forte, avec un facteur de possesion, après l'entrée du mode de passe confirmé, un SMS qui envoie un code sera envoyé, l'employé devra entré ce code pour ce connecté 
 
 une autre sécuriter que l'on peut mettre est une durée de vie pour un mot de passe, la personne devra changer sont mot de passe tous les mois.
+
+# JWT
+
+le JWT est un token générer lors de l'identification, il est envoyer coté de manière sécurisé pour l'identification, il est conserver de manière sécurisé du coté client  et il est envoyé à chaque foit qu'un appel à l'api est fait, il permet de prouvé que le client est bien lui meme et évoter des attaques CSRF.
+
+On va mettre une durée d'expiration de 10h sur ce token, ce qu forcera les utilisateur à ce reconnecté le lendemain
+af
+
+# WAF
+
+Le WAF est un web application firewall, il se situe entre le client et l'api protège l'api des attaques, il permet de protéger des attaques SQLi,  XXS et les attaque de type DDos et d'analysé les requette https
+
+On peut le configurer pour qu'il laisse passer que les requete voulue et qu'il bloque les requete malveillante.
+
+
 
 
