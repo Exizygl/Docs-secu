@@ -19,8 +19,7 @@
     - Audit 
 - Back
     - validation d'entrée
-    - traitement des données
-    - vérfication des sorties
+    - traitement des données et vérification des sorties
     - authentification
         - jwt
     - autorisation d'accés
@@ -289,7 +288,7 @@ Le back-end d'un site web est l'endroit ou toutes les informations transit, du f
 
 ## Vérification des entrées
 
-Toutes demandes envoyer par un utilsateur doivent etre vérifier, par exemple dans la barre de recherche de pire2pire pour par exemple trouver une formation, on doit vérifier s'il y a pas de code ou de requete SQL dans la demande envoyé
+Toutes demandes envoyer par un utilsateur doivent etre vérifier, par exemple dans la barre de recherche de pire2pire pour par exemple trouver une formation, on doit vérifier s'il y a pas de code Html,JS ou des requetes SQL dans la demande envoyé
 
 Dans le cas de l'accée à une autre une page, on doit vérifier si l'utilisateur à le droit d'accés a cette page, avec l'authentification et les jetons JWT.
 
@@ -304,6 +303,20 @@ Les entrées sont aussi les entrée venant d'autre part que le front, que se soi
 Dans le cas de la base donnée c'est vérifier si les données reçu corespondent au format attendu de la requete envoyer avant.
 
 Le but de toutes c'est vérification est d'avoir un nombre limité d'accée à l'api pour que l'on puisse surveiller et controler ce qui se passe.
+
+## Traitement des données et sortie des donnée.
+
+Toutes données qui passe dans l'API doivent etre traité après vérification pour leur sortie.
+
+Dans le cas des requetes vers la base de donné, par exemple la création d'un nouveau compte, les données doivent etre vérifier, préparer et encrypter pour les préparer à les envoyer à la base de donnée, dans le cas de mot de mat il va falloir les haché en plus.
+
+Ensuite tout est envoyer à l'ORM pour qu'il fasse lui meme la requete vers la base de donnée.
+
+Le cas inverse se passe aussi pour se que l'on a recu de l'ORM.
+
+on traite les données reçu, on les déchiffre et on les formate pour les rendre conforme au besoins pour le front, le but étant d'éviter le traitement de donné coté client.
+
+
 
 
 
