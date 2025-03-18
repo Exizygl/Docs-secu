@@ -30,7 +30,6 @@
    
 - Front
     - TLS
-    - Certificat
     - SOP
     - Cors
     - CSP
@@ -400,4 +399,25 @@ On utilisera aussi les mesures de HSTS pour forcer tout accé en HTTPS et aucun 
 On utilisera aussi les certificats TLS pour indiquer que le site est sur et il seront surveiller par le certificate transparacy, le but des certificats et de prouver que le site est reconnu comme sûr et ne pas avoir des problèmes avec les navigateurs et le ressancement.
 
 
+# SOP
 
+Le SOP(same-origin Policy) est une regle utilisé par défaut pour protéger où arrive les données.
+
+Le but étant que tout transfaire vers un autre cite non autorisé ne sois pas possible et que les information sensible comme les cookie et les identifiant ne soit pas lisible par une autre origine. cette mesure peut protéger des attack XSS et CSRF.
+
+# CORS
+
+Le Cross-Origin Resource Sharing  on l'utilisera pour contourner le SOP quand on en aura besoin d'accedé à d'autre origin que la notre
+comme par exemple pour des video youtube créer par pire2pire.com
+
+# CSP
+
+le CSP est une politique de sécurité que nous allons utilisé en complément de Cors pour controler l'activité venant d'autre origin, si Cors consiste a dire avec qui on peut communiqué, CSP est la pour dire avec qui ont ne peut pas communiqué.
+
+Le but du CSP est de dire dans une entete ce que le navigateur doit laisser passer et bloqué comme resource venant d'une autre origine, le but étant d'empecher le site executer un script venant d'une source que l'on approuve pas, cela arrete les attaques XXS.
+
+CSP peut aussi bloque les connexions vers d'autre domaine pas autoriser et donc éviter que l'utilsateur active une requete silencieuse à son insu.
+
+CSP peut aussi empecher le clickjacking, le fait qu'un attaquant pllace un filtre invisible devant une page du site
+
+La dernière fonctionnalité de CSP est qu'il peut gardr un journal des tentative de le contourner, ceux qui nous permet de voir les potentiel attack est comment les hackeur attaque le site.
