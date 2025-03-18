@@ -422,6 +422,8 @@ CSP peut aussi empecher le clickjacking, le fait qu'un attaquant pllace un filtr
 
 La dernière fonctionnalité de CSP est qu'il peut gardr un journal des tentative de le contourner, ceux qui nous permet de voir les potentiel attack est comment les hackeur attaque le site.
 
+Le CSP peut également bloqué les orgine d'execution du JS, en autorisant seulement dans un fichier dissocier on peut empécher des attaque XSS
+
 Toutes c'est fonctionnalité seront utilsé pour le site pire2pire.com
 
 # Referrer Policy
@@ -455,3 +457,10 @@ En plus de c'est vérification on doit vérifier que les donnée ne soit pas dan
 
 L'envoie d'une requette peut etre une requete détourné par un site piégé envoyer a l'utilisateur pour éviter cela nous allos utiliser des token CRSF, le token sera normalement généré quand l'utilisateur arrive sur la page, il sera conservé dans la session et mit en valeur caché dans le formulaire, on pourra les comparer lors de l'envoi du formulaire pour voir si c'est vraiment une requete venant dans utilisateur utilsant la méthode normal ou une attque CSRF pour mannipulé les crédential de l'utilisateur.
 
+# Appel au Api
+
+Tou appel vers une api sera fait avect fetch XMLhttprequest étant plus sensible au attaque XSS.
+
+Fetch a un meilleur support avec le CSP et le CORS, mais aaussi la possibilité d'intéragir avec les cookie de crédentiel
+
+Nous utiliserons alors la méthode fetch  pour le site
