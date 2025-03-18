@@ -316,7 +316,32 @@ Le cas inverse se passe aussi pour se que l'on a recu de l'ORM.
 
 on traite les données reçu, on les déchiffre et on les formate pour les rendre conforme au besoins pour le front, le but étant d'éviter le traitement de donné coté client.
 
+## Mot de passe
 
+Le mot de passe est une important pour authentification et la sécurité du site, car il étape important pour savoir le role dée l'utilsateur et et à qu'elle donnée il a le droit d'accées, il est donc primordiale de le protéger
+
+### Menace
+
+il y a plusieurs type de menace sur les mot de passes
+
+
+Les attaques en ligne: le hackeur esseye de passer outre les défence du système pour avoir accès au identifiant.
+Comme exemple de ce genre d'attaque on a:
+- attaque par force brute: le hackeur esseye des des mot passe au hasard, potentiellement venant de dictionnaire de mot de passe avec des test automatisé
+
+- attaque par protocole d'authentification : le hackeur intercepte des donnée d'identification par un transfert non sécuriser ou vole de token pour ce faire passer pour l'utilisateur
+
+- le vol du moyen d’authentification: le mot de passe se fait volé, vol du mot de passe sur un bout de papier, hameconnage.
+
+### sécurité du mot de passe
+
+Dans le cas de pire2pire.com, les facteur d'authentification seront des facteur de connaissance.
+
+Nous devons protéger le mot de passe de la meilleur façon, il ya plusieur mesure que l'on peut etre en place
+
+- La complexiter du mot de passe: le mot de passe ne doit pas etre trop simple, il doit etre assez long et avoir des characters assez diversifié pour se protéger contre l'attaque de force brute, il est donc conseiller de mettre une taille minimun de 10 characters avec au moins une majuscule, une minuscule, un chiffre et un xgaracter spécial.
+
+- le hachage: avant d'etre encrypté le mot de passe doit etre  maské avec en le hachant avec un algoryteme de hachage on y rajoute un sel pour assurer la sécuriter et protéger des attaques de rainbow table.
 
 
 
