@@ -421,3 +421,13 @@ CSP peut aussi bloque les connexions vers d'autre domaine pas autoriser et donc 
 CSP peut aussi empecher le clickjacking, le fait qu'un attaquant pllace un filtre invisible devant une page du site
 
 La dernière fonctionnalité de CSP est qu'il peut gardr un journal des tentative de le contourner, ceux qui nous permet de voir les potentiel attack est comment les hackeur attaque le site.
+
+Toutes c'est fonctionnalité seront utilsé pour le site pire2pire.com
+
+# Referrer Policy
+
+Le referrer policy est une politique de sécurité qui nous permet de controler l'URL qui passe dans l'entete qunad un utilisateur click sur un lien.
+
+Cela nous permet de par exemple voirde quel page vient l'utilsateur, dans le cadre de pire2pire cela va etre utilisé comme mesure de protection, pire2pire étant une plate de forme de e-learning, il est possible que des lein frauduleux soit posté ou envoyé à quelqu'un pour éviter que toutes information sensible qui se trouve dans l'URL soit envoyé on peut utilisé le Refferer policy pour indiqué quoi mettre dans l'entete HTTP envoyé, de l'URL entier à seulement le nom de domaine à rien.
+
+Dans le cas de pire2pire on envera seulement le domaine vers d'autre origin.
