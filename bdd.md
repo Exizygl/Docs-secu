@@ -1,3 +1,48 @@
+
+# La Base de données. 
+
+ La base de données est au cœur de la sécurité du site, c’est le centre de la sécurité
+
+- Authentification
+    - Créer des authentification avec des role servers en yilisant la méthode du least privilège( https://www.datasunrise.com/fr/centre-de-connaissances/authentification-sql-server/?utm_source=chatgpt.com)
+ 
+
+- Hachage de mot de passe
+    - On hache le mot de passe
+
+- requete préparer
+    - On prépare les requetes pour eviter le SQLi
+
+- UUID
+    - Identifiant universal unique
+
+- encription
+    - transformation des donnée
+    - clé d'encription
+    - systeme de gestion de clé
+
+- site de sauvegarde
+    - faire des copies de la base à d'autre endroit physique
+    - le délait dépent de l'activité et du type de donnée
+
+- ORM
+    - "couche" de protection
+    - créer des requetes SQL
+    - évite l'envoie direct de requete 
+
+- sécurity audit
+    - log des actions sur la base de donnée
+
+
+
+question???
+rotation: état du site?
+authetification: mot de passe where?? 
+
+
+
+notes 
+
 chiffrement
 hachage
 requete prépa + ORM
@@ -16,52 +61,16 @@ intro
 integriter des donnée
 non répudiation
 log fichier
-certificat ssl
+non répudiation
 bo base object
 dto data transfer object
 verif regex
 bloquer camera micro
-SSL
-wouaf
+
+
 api 
 
 Data policy
 classify
 catalog
 resilience
-
-Les points clé de la protection bdd
-
-
-La Base de données. 
-
- 
-
-La base de données est au cœur de la sécurité du site, c’est le centre de la sécurité
-
-Authentification
-
-Créer des authentification avec des role servers en yilisant la méthode du least privilège
-
-Hachage de mot de passe
-
-On hache le mot de passe
-
-requete préparer
-
-On prépare les requetes pour eviter le SQLi
-
-UUID
-
-Identifiant universal unique
-
-encription
-
-site de sauvegarde
-
-OML
-
-pour encandré et securiser la Bdd
-
-sécurity audit
-
