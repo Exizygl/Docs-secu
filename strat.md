@@ -19,6 +19,7 @@
     - Audit 
 - Back
     - validation d'entrée
+    - traitement des données
     - vérfication des sorties
     - authentification
         - jwt
@@ -302,7 +303,7 @@ Les entrées sont aussi les entrée venant d'autre part que le front, que se soi
 
 Dans le cas de la base donnée c'est vérifier si les données reçu corespondent au format attendu de la requete envoyer avant.
 
-Le bute de toutes c'est vérification est d'avoir un nombre limité d'accée à l'api pour que l'on puisse surveiller et controler ce qui se passe.
+Le but de toutes c'est vérification est d'avoir un nombre limité d'accée à l'api pour que l'on puisse surveiller et controler ce qui se passe.
 
 
 
