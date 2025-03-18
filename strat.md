@@ -463,4 +463,13 @@ Tou appel vers une api sera fait avect fetch XMLhttprequest étant plus sensible
 
 Fetch a un meilleur support avec le CSP et le CORS, mais aaussi la possibilité d'intéragir avec les cookie de crédentiel
 
-Nous utiliserons alors la méthode fetch  pour le site
+Nous utiliserons alors la méthode fetch pour le site
+
+# Iframe
+
+Dans le site, l'incrustration de vidéo youtube peut etre utilisé pour un autre support au étudiant.
+
+Nous pouvons isoler c'est video youtube pour que le domaine youtube est zero accés à ce qui se passe, cela permetra d'empecher le 2eme domaine que l'on fait apparaitre sur la page de, soummetre des formulair, executer du code accéder au info protéger par le SOP, accéder au DOM.
+
+Ainsi on peut utiliser les avantage de foncion d'autre site sans mettre en danger la sécurité de pire2pire.com
+
