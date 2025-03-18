@@ -382,3 +382,22 @@ On peut le configurer pour qu'il laisse passer que les requete voulue et qu'il b
 
 
 
+# Le Front
+
+Le front est le coté client ce qui se passe sur la machine du client, le client peut donc avoir accée a toute information qui est envoyé,
+Nous devons donc protégè toutes les info qui y arrice pour empécher qu'une autre perssone que le hacker puisse y avoir accés
+
+## TLS
+
+Le Transport Layer Security(TLS)  est un protocole de sécurité utilisé pour chiffrer les communications entre les applications sur Internet.
+
+on l'utilisera avec le protocol https pour sécurissé le transfert des donné, le but étant d'empecher un potentiel hacker de capté les information, par les attack de Man-in-theMiddle
+
+on utilisera la dernière version de TLS(1.3) pour la sécurité
+
+On utilisera aussi les mesures de HSTS pour forcer tout accé en HTTPS et aucun en HTTP
+
+On utilisera aussi les certificats TLS pour indiquer que le site est sur et il seront surveiller par le certificate transparacy, le but des certificats et de prouver que le site est reconnu comme sûr et ne pas avoir des problèmes avec les navigateurs et le ressancement.
+
+
+
