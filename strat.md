@@ -428,7 +428,7 @@ Toutes c'est fonctionnalité seront utilsé pour le site pire2pire.com
 
 Le referrer policy est une politique de sécurité qui nous permet de controler l'URL qui passe dans l'entete qunad un utilisateur click sur un lien.
 
-Cela nous permet de par exemple voirde quel page vient l'utilsateur, dans le cadre de pire2pire cela va etre utilisé comme mesure de protection, pire2pire étant une plate de forme de e-learning, il est possible que des lein frauduleux soit posté ou envoyé à quelqu'un pour éviter que toutes information sensible qui se trouve dans l'URL soit envoyé on peut utilisé le Refferer policy pour indiqué quoi mettre dans l'entete HTTP envoyé, de l'URL entier à seulement le nom de domaine à rien.
+Cela nous permet de par exemple voirde quel page vient l'utilsateur, dans le cadre de pire2pire cela va etre utilisé comme mesure de protection, pire2pire étant une plate de forme de e-learning, il est possible que des lein frauduleux soit posté ou envoyé à quelqu'un pour éviter que toutes information qui se trouve dans l'URL soit envoyé on peut utilisé le Refferer policy pour indiqué quoi mettre dans l'entete HTTP envoyé, de l'URL entier à seulement le nom de domaine à rien.
 
 Dans le cas de pire2pire on envera seulement le domaine vers d'autre origin.
 
@@ -445,3 +445,13 @@ L'indexdb stocke en clair directement les donnée de l'utilisateur, cet peut etr
 Les cookies par contre ont des options de protection, on peut limité leur accés, les empeché d'etre transmit vers d'autre domaine et leur donnée une date d'expiration
 
 Les cookie sont donc la solution que nous allons utilisé pour l'authentifictaion en gardant qui est la persone dedans ainsi que son JWT token, en utilisant tous les option de security et une date d'expiration.
+
+
+# sécuriter des information envoyé depuis le client
+
+L'utilisateur va envoyer des information a travers des formulaires, c'est informations devront etre vérifier pour vois si elles sont conforme à ce qu'on s'attend.
+
+En plus de c'est vérification on doit vérifier que les donnée ne soit pas dangeureuse, des donnée envoyer peuvent avoir du code qui va s'exécuter, nous allons donc échapper les entré utilisateur pour éviter tout execution de code ainsi que ne pas utiliser de fonction qui va potentiellemen executé ce code comme eval. nous allons jamais inséré du contenu dans le DOM sans traitement et vérification avant.
+
+L'envoie d'une requette peut etre une requete détourné par un site piégé envoyer a l'utilisateur pour éviter cela nous allos utiliser des token CRSF, le token sera normalement généré quand l'utilisateur arrive sur la page, il sera conservé dans la session et mit en valeur caché dans le formulaire, on pourra les comparer lors de l'envoi du formulaire pour voir si c'est vraiment une requete venant dans utilisateur utilsant la méthode normal ou une attque CSRF pour mannipulé les crédential de l'utilisateur.
+
