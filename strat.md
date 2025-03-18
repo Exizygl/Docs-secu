@@ -431,3 +431,17 @@ Le referrer policy est une politique de sécurité qui nous permet de controler 
 Cela nous permet de par exemple voirde quel page vient l'utilsateur, dans le cadre de pire2pire cela va etre utilisé comme mesure de protection, pire2pire étant une plate de forme de e-learning, il est possible que des lein frauduleux soit posté ou envoyé à quelqu'un pour éviter que toutes information sensible qui se trouve dans l'URL soit envoyé on peut utilisé le Refferer policy pour indiqué quoi mettre dans l'entete HTTP envoyé, de l'URL entier à seulement le nom de domaine à rien.
 
 Dans le cas de pire2pire on envera seulement le domaine vers d'autre origin.
+
+# stockage de donnée coté client
+
+il y a plusieurs moyen de stocké des donnée coté utilisateur
+
+Le webstorage, l'indexdb et les cookies sont c'est différent moyen
+
+Le webstorage est accesible au js et les données sont stocké en clair ce qui le rends suceptible au attaque XXS
+
+L'indexdb stocke en clair directement les donnée de l'utilisateur, cet peut etre utilisé par des webwork ce qui le rends aussi succeptible au XXS attack.
+
+Les cookies par contre ont des options de protection, on peut limité leur accés, les empeché d'etre transmit vers d'autre domaine et leur donnée une date d'expiration
+
+Les cookie sont donc la solution que nous allons utilisé pour l'authentifictaion en gardant qui est la persone dedans ainsi que son JWT token, en utilisant tous les option de security et une date d'expiration.
