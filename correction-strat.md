@@ -77,3 +77,76 @@ Nous allons assurer la conformité des données pour faire en sorte que le site 
 
 ## Journalisation  
 La journalisation consiste à enregistrer les interactions sur chaque couche du site dans des journaux d’événements pour garder une trace de tout ce qui s’y passe ainsi que du moment où ces événements se sont produits. Le but étant que, en cas de problème, d'attaque ou de tentative d’attaque, on puisse retracer l’attaque pour corriger de potentielles failles ainsi qu'avoir une idée de l’ampleur des dégâts.  
+
+
+# La Base de données  
+
+La base de données est au cœur de la sécurité du site, c’est l’endroit où toutes les informations importantes se trouvent, et les protections de la base de données sont extrêmement importantes au cas où les protections des couches rencontrées avant ont été contournées ou si l’attaquant arrive à attaquer directement la base de données.  
+
+## Authentification  
+
+Utiliser un système d’authentification est important pour protéger une base de données. Ce système permet de créer des rôles qui gèrent les droits sur la base de données, cela permet de gérer ce qui peut être vu, écrit, supprimé ou mis à jour.  
+
+Forcer une identification permet de bloquer les requêtes où la personne qui l’envoie n’a pas moyen d’accéder aux identifiants. Une gestion des rôles est à faire, avec tout rôle inutile devant être supprimé. Le principe du moindre privilège doit être utilisé, par exemple ne pas donner un droit d’écriture sur des cours lorsqu’il a été décidé que le rôle étudiant n’a que le droit de lire ces informations.  
+
+Les rôles demandant un identifiant et un mot de passe pour se connecter, les bonnes pratiques d’utilisation de mot de passe doivent être appliquées, de la complexité du mot de passe au hachage.  
+
+## UUID  
+
+UUID est l’Universel Unique Identifier. Contrairement au UID qui utilise l’incrémentation pour se différencier, le UUID est utile pour éviter qu’un hacker puisse, au hasard, trouver un ID lors de son attaque.  
+
+L’UUID se présente sous la forme de 32 chiffres hexadécimaux, ce qui rend le nombre énorme avec un nombre de variantes paraissant presque infini.  
+
+Si l’attaquant se retrouve en position où il doit trouver un ID pour son attaque, que ce soit pour voler des données ou tenter une attaque LFI par l’URL, l’UUID permet de rendre cette tâche presque impossible.  
+
+## Encryptions  
+
+L’encryption est le fait de transformer les données pour qu’elles soient illisibles à toute personne qui arrive à voler les données.  
+
+Elle fonctionne avec une clé qui permet de décrypter les données quand les vérifications montrent que la demande est légitime.  
+
+Bien sûr, cette clé demande alors de ne pas être facilement accessible. On utilise un système de gestion de clés pour qu’elle soit dans un endroit sécurisé.  
+
+## Les clés d’encryptage  
+
+Dans un système de gestion de clés, des bonnes pratiques pour l’accès doivent être utilisées. Le moindre privilège, la clé doit être utilisée pendant un certain temps, le délai par défaut conseillé est de 90 jours. Nous allons donc utiliser ce délai pour pire2pire.com. Au bout de ces 90 jours, une rotation de la clé d’encryptage du site devrait être faite pour le déchiffrage des données et les encrypter de nouveau avec la nouvelle clé.  
+
+### Le cycle de vie d’une clé :  
+
+- **Génération** : la clé est générée avec l’algorithme de chiffrement.  
+- **Distribution** : la distribution de la clé doit être faite de manière sécurisée via une connexion TLS.  
+- **Utilisation** : elle est utilisée pour encrypter toutes les données précédemment décryptées par l’ancienne clé.  
+- **Stockage** : on la stocke ensuite dans notre gestionnaire de clés.  
+- **Rotation** : la clé étant à la fin de sa vie, la rotation commence, on déchiffre toutes les données pour la clé suivante.  
+- **Révocation** : tous les droits d’utilisation de la clé sont révoqués et elle devient inutilisable.  
+- **Destruction** : la clé est officiellement détruite.  
+
+## ORM  
+
+ORM (*Object-Relational Mapper*) fournit une couche orientée objet entre la base de données et le code. Il permet de faire en sorte que l’on n’envoie pas la requête reçue directement dans la base de données.  
+
+Il permet de configurer des points d’entrée vers la base de données plutôt que d’envoyer directement une requête SQL. On utilise les fonctionnalités de l’ORM pour la créer pour nous.  
+
+Ainsi, seules des requêtes prédéterminées peuvent aller jusqu’à la base de données par les autres couches de l’application, empêchant ainsi des attaques SQLi.  
+
+Le tout crée une couche protectrice autour de la base de données, limitant les types d’accès à la base de données.  
+
+## Site de sauvegarde  
+
+Il faut avoir un site de sauvegarde sécurisé pour la base de données. Un site non sécurisé peut se faire attaquer par une personne directement.  
+
+L’attaquant aura alors accès à la base de données directement et seules les mesures d’authentification et d’encryptage peuvent protéger la base de données.  
+
+## Copie de la base de données  
+
+En cas de destruction du lieu physique de la base de données ou d’une attaque détruisant des données, des copies de la base de données sont nécessaires.  
+
+Les copies devront se trouver dans un lieu différent de la base de données principale. Pire2pire.com étant un site de e-learning, la base de données et la mise à jour fréquente de la base de données demandent que celle-ci soit copiée plusieurs fois par jour.  
+
+## Audit  
+
+L’audit de la base de données est un journal de toutes les activités qui se passent sur la base de données.  
+
+Il permet de se rendre compte de toutes les actions qui se passent dans la base. Il garde toutes les actions qui se passent, que ces actions soient réussies ou non, ainsi que l’heure de ces actions.  
+
+Cela permet de voir les tentatives qui se passent sur la base de données et surtout si ces attaques ont réussi, afin que l’on puisse examiner l’ampleur des dégâts et ainsi pouvoir prévenir et au mieux y remédier.  
