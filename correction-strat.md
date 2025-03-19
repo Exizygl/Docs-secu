@@ -244,3 +244,113 @@ On mettra une durée d'expiration de 10 heures sur ce token, ce qui forcera les 
 Le WAF (Web Application Firewall) se situe entre le client et l'API et protège l'API des attaques. Il permet de protéger contre les attaques SQLi, XSS et les attaques de type DDoS, et d'analyser les requêtes HTTPS.
 
 On peut le configurer pour qu'il laisse passer uniquement les requêtes voulues et qu'il bloque les requêtes malveillantes.
+
+# Le Front
+
+Le front est le côté client, c'est ce qui se passe sur la machine du client. Le client peut donc avoir accès à toute information qui est envoyée. Nous devons donc protéger toutes les informations qui y arrivent pour empêcher qu'une autre personne que le hacker puisse y avoir accès.
+
+## TLS
+
+Le **Transport Layer Security (TLS)** est un protocole de sécurité utilisé pour chiffrer les communications entre les applications sur Internet.
+
+On l'utilisera avec le protocole **https** pour sécuriser le transfert des données, le but étant d'empêcher un potentiel hacker de capter les informations par des attaques de type **Man-in-the-Middle**.
+
+On utilisera la dernière version de TLS (**1.3**) pour la sécurité.
+
+On utilisera aussi les mesures de **HSTS** pour forcer tout accès en HTTPS et aucun en HTTP.
+
+On utilisera aussi les certificats TLS pour indiquer que le site est sûr. Ils seront surveillés par le **Certificate Transparency**, le but des certificats étant de prouver que le site est reconnu comme sûr et ne pas avoir de problèmes avec les navigateurs et le référencement.
+
+## SOP
+
+Le **SOP (Same-Origin Policy)** est une règle utilisée par défaut pour protéger où arrivent les données.
+
+Le but étant que tout transfert vers un autre site non autorisé ne soit pas possible et que les informations sensibles, comme les cookies et les identifiants, ne soient pas lisibles par une autre origine. Cette mesure peut protéger contre les attaques **XSS** et **CSRF**.
+
+## CORS
+
+Le **Cross-Origin Resource Sharing (CORS)**, on l'utilisera pour contourner le SOP quand on aura besoin d'accéder à d'autres origines que la nôtre, comme par exemple pour des vidéos YouTube créées par **pire2pire.com**.
+
+Le CORS permet aussi d'utiliser les prévols, ou une vérification que la demande est conforme et autorisée, avant son exécution.
+
+## CSP
+
+Le **CSP (Content Security Policy)** est une politique de sécurité que nous allons utiliser en complément de CORS pour contrôler l'activité venant d'autres origines. Si CORS consiste à dire avec qui on peut communiquer, CSP est là pour dire avec qui on ne peut pas communiquer.
+
+Le but du CSP est de dire, dans une en-tête, ce que le navigateur doit laisser passer et bloquer comme ressource venant d'une autre origine. Le but étant d'empêcher le site d'exécuter un script venant d'une source que l'on n'approuve pas, cela arrête les attaques **XSS**.
+
+CSP peut aussi bloquer les connexions vers d'autres domaines non autorisés, et donc éviter que l'utilisateur n'active une requête silencieuse à son insu.
+
+CSP peut aussi empêcher le **clickjacking**, qui est le fait qu'un attaquant place un filtre invisible devant une page du site.
+
+La dernière fonctionnalité de CSP est qu'il peut garder un journal des tentatives de contournement, ce qui nous permet de voir les potentielles attaques et comment les hackers attaquent le site.
+
+Le CSP peut également bloquer les origines d'exécution du JavaScript, en autorisant seulement dans un fichier dissocié, ce qui permet d'empêcher des attaques **XSS**.
+
+Toutes ces fonctionnalités seront utilisées pour le site **pire2pire.com**.
+
+## Referrer Policy
+
+Le **Referrer Policy** est une politique de sécurité qui nous permet de contrôler l'URL qui passe dans l'en-tête quand un utilisateur clique sur un lien.
+
+Cela nous permet de, par exemple, voir de quelle page vient l'utilisateur. Dans le cadre de **pire2pire**, cela va être utilisé comme mesure de protection. **pire2pire** étant une plateforme de e-learning, il est possible que des liens frauduleux soient postés ou envoyés à quelqu'un. Pour éviter que toutes les informations qui se trouvent dans l'URL soient envoyées, on peut utiliser la **Referrer Policy** pour indiquer quoi mettre dans l'en-tête HTTP envoyé : de l'URL entière à seulement le nom de domaine, voire rien.
+
+Dans le cas de **pire2pire**, on enverra seulement le domaine vers d'autres origines.
+
+## Stockage de données côté client
+
+Il y a plusieurs moyens de stocker des données côté utilisateur :
+
+- **WebStorage**, **IndexedDB**, et **Cookies** sont ces différents moyens.
+
+Le **WebStorage** est accessible au JavaScript, et les données sont stockées en clair, ce qui le rend susceptible aux attaques **XSS**.
+
+**IndexedDB** stocke en clair directement les données de l'utilisateur. Cela peut être utilisé par des **Web Workers**, ce qui le rend aussi susceptible aux attaques **XSS**.
+
+Les **cookies**, par contre, ont des options de protection. On peut limiter leur accès, les empêcher d'être transmis vers d'autres domaines et leur donner une date d'expiration.
+
+Les cookies sont donc la solution que nous allons utiliser pour l'authentification, en gardant l'identité de la personne ainsi que son **JWT token**, en utilisant toutes les options de sécurité et une date d'expiration.
+
+## Sécurité des informations envoyées depuis le client
+
+L'utilisateur va envoyer des informations à travers des formulaires. Ces informations devront être vérifiées pour voir si elles sont conformes à ce qu'on s'attend.
+
+En plus de ces vérifications, on doit vérifier que les données ne soient pas dangereuses. Les données envoyées peuvent contenir du code qui va s'exécuter. Nous allons donc échapper les entrées utilisateur pour éviter toute exécution de code ainsi que ne pas utiliser de fonction qui pourrait potentiellement exécuter ce code, comme **eval**. Nous n'allons jamais insérer du contenu dans le DOM sans traitement et vérification avant.
+
+L'envoi d'une requête peut être une requête détournée par un site piégé envoyé à l'utilisateur. Pour éviter cela, nous allons utiliser des tokens **CSRF**. Le token sera normalement généré quand l'utilisateur arrive sur la page, il sera conservé dans la session et mis en valeur cachée dans le formulaire. On pourra les comparer lors de l'envoi du formulaire pour voir si c'est vraiment une requête venant de l'utilisateur utilisant la méthode normale ou une attaque **CSRF** pour manipuler les informations de l'utilisateur.
+
+## Appel à l'API
+
+Tous les appels vers une API seront faits avec **Fetch**. **XMLHttpRequest** étant plus sensible aux attaques **XSS**.
+
+**Fetch** a un meilleur support avec le **CSP** et le **CORS**, mais aussi la possibilité d'interagir avec les cookies de crédentiels.
+
+Nous utiliserons donc la méthode **Fetch** pour le site.
+
+## Iframe
+
+Dans le site, l'incrustation de vidéos YouTube peut être utilisée pour un autre support aux étudiants.
+
+Nous pouvons isoler ces vidéos YouTube pour que le domaine YouTube n'ait aucun accès à ce qui se passe, cela permettra d'empêcher le deuxième domaine que l'on fait apparaître sur la page de soumettre des formulaires, d'exécuter du code, d'accéder aux informations protégées par le SOP ou d'accéder au DOM.
+
+Ainsi, on peut utiliser les avantages de fonctionnalités d'autres sites sans mettre en danger la sécurité de **pire2pire.com**.
+
+## Protection contre les injections de codes
+
+### Strict Mode
+
+Toute utilisation de **JavaScript** sera faite avec l'activation du strict mode. Le strict mode force les meilleures pratiques de codage. Avec ce mode, des simples erreurs lors de l'exécution du code bloqueront son avancement.
+
+L'ajout de ce mode peut bloquer le code injecté lors d'une attaque **XSS**.
+
+### Web Worker
+
+On peut utiliser les **Web Workers** pour l'exécution du code JavaScript dans un environnement séparé, sans qu'il ne puisse affecter directement le DOM. Cela nous permet de faire de l'exécution de code JS avec plus de sécurité.
+
+Nous devons quand même faire des vérifications sur ce qui entre dans le **Web Worker**, ainsi que sur ce qui en sort avant de l'utiliser dans le DOM.
+
+Le **CSP** doit être utilisé avec le **Web Worker** pour limiter les sources externes.
+
+### Template String
+
+Lorsque l'on reçoit des informations, on peut utiliser les fonctions d'échappement des **template strings** pour remplacer les caractères qui indiquent des fonctionnalités de code. Le navigateur comprendra qu'il devra afficher les caractères initiaux lors de l'affichage, mais ils ne seront pas reconnus comme du code lors de l'exécution.
