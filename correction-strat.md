@@ -30,7 +30,7 @@ This document will present the different types of dangers that may occur during 
 
 # RGPD
 
-Le Règlement Général sur la Protection des Données (RGPD) est une réglementation de l'Union européenne que le site devra suivre et appliquer. Il se concentre sur le traitement des données personnelles et donne plus de contrôle aux utilisateurs.
+Le Règlement Général sur la Protection des Données (RGPD) est une réglementation de l'Union européenne que le site devra suivre et appliquer. Il se concentre sur le traitement des données personnelles, la collecte, le stockage, le partage et donne plus de contrôle aux utilisateurs.
 
 Nous devrons donc :
 
@@ -54,3 +54,26 @@ Ici, nous allons présenter les différents types d’attaques que ce guide a po
 - **LFI/RFI** : L'attaque *Local/Remote File Inclusion* consiste à trouver un moyen d'accéder à un fichier local ou distant sur le site normalement pas accessible pour une personne n'ayant pas les droits.
 - **DDoS** : L'attaque *Distributed Denial of Service* consiste à envoyer un grand nombre de demandes automatisées au serveur pour le surcharger et perturber l'utilisation des autres utilisateurs, en ralentissant voire en rendant le serveur incapable de répondre aux demandes.
 - **XXE** : L'attaque *XML External Entity* consiste à injecter du XML malveillant pour exécuter ce code et obtenir des accès normalement impossibles.
+
+
+# Pratique de développement  
+
+Pour protéger de ces attaques, certaines mesures vont être respectées à travers le développement du projet.  
+
+## Unités distinctes  
+Chaque couche de l’application sera séparée (Front, Base de données, API). Cette séparation nous permettra de bien définir les interactions entre chacune d’entre elles. Ces interactions étant bien définies, nous allons pouvoir développer des mécanismes de défense et de vérification pour chacune d’entre elles.  
+
+## Moindre privilège  
+Le moindre privilège consiste à donner le moins de possibilités d’action possible à chaque rôle des utilisateurs. Les visiteurs du site ne doivent pas avoir accès à des fonctions dédiées aux étudiants, coachs ou administrateurs.  
+
+## Réduction de la surface d’attaque  
+Plus nous ajoutons de composants au site et plus nous agrandissons l’exposition aux réseaux de notre site. Plus il y a d’opportunités de se faire attaquer. Nous n’allons pas rajouter des composants inutilisés ou non sécurisés, ainsi que retirer ceux qui sont seulement utiles au cours de la phase de développement lorsque nous passerons à la phase de déploiement. De même pour l’exposition réseau : plus on en a, plus il y a de vulnérabilités. Nous devons limiter les accès réseau.  
+
+## Sécurisation des échanges de données  
+Tout échange de données doit être sécurisé pour ne pas être intercepté pendant son transfert. Nous allons utiliser des protocoles comme le protocole HTTPS pour la protection.  
+
+## Conformité du contenu  
+Nous allons assurer la conformité des données pour faire en sorte que le site apparaisse dans le navigateur des utilisateurs tel qu'il a été conçu, afin d'assurer l’expérience promise.  
+
+## Journalisation  
+La journalisation consiste à enregistrer les interactions sur chaque couche du site dans des journaux d’événements pour garder une trace de tout ce qui s’y passe ainsi que du moment où ces événements se sont produits. Le but étant que, en cas de problème, d'attaque ou de tentative d’attaque, on puisse retracer l’attaque pour corriger de potentielles failles ainsi qu'avoir une idée de l’ampleur des dégâts.  
