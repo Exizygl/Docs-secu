@@ -76,7 +76,13 @@ Tout échange de données doit être sécurisé pour ne pas être intercepté pe
 Nous allons assurer la conformité des données pour faire en sorte que le site apparaisse dans le navigateur des utilisateurs tel qu'il a été conçu, afin d'assurer l’expérience promise.  
 
 ## Journalisation  
-La journalisation consiste à enregistrer les interactions sur chaque couche du site dans des journaux d’événements pour garder une trace de tout ce qui s’y passe ainsi que du moment où ces événements se sont produits. Le but étant que, en cas de problème, d'attaque ou de tentative d’attaque, on puisse retracer l’attaque pour corriger de potentielles failles ainsi qu'avoir une idée de l’ampleur des dégâts.  
+La journalisation consiste à enregistrer les interactions sur chaque couche du site dans des journaux d’événements pour garder une trace de tout ce qui s’y passe ainsi que du moment où ces événements se sont produits. Le but étant que, en cas de problème, d'attaque ou de tentative d’attaque, on puisse retracer l’attaque pour corriger de potentielles failles ainsi qu'avoir une idée de l’ampleur des dégâts.
+
+## Test unitaire
+
+Chaque composant de l'application devra être testé avec une série de tests simulant, en plus de la détection de bugs, les tentatives d'attaque, dans le but de détecter d'éventuelles faiblesses de sécurité.
+
+Une série de tests d'automatisation visant la partie mise à jour sera mise en place pour tester chaque changement apporté au projet. Ainsi, nous pourrons découvrir et corriger les éventuels problèmes de sécurité dès qu'ils sont identifiés.
 
 
 # La Base de données  
@@ -358,3 +364,27 @@ Lorsque l'on reçoit des informations, on peut utiliser les fonctions d'échappe
 # Conclusion
 
 Nous allons mettre en place toutes ces mesures dans le but de respecter la réglementation, mais aussi éviter toute forme de dégât sur pire2pire et donner la meilleure expérience utilisateur à toutes les personnes qui interagiront avec le site, que ce soit des visiteurs, des étudiants ou bien encore des employés de pire2pire.
+
+
+# Source
+
+anssi guide recommandations mise en oeuvre site web maitriser standards securite cote navigateur 
+https://cyber.gouv.fr/sites/default/files/2013/05/anssi-guide-recommandations_mise_en_oeuvre_site_web_maitriser_standards_securite_cote_navigateur-v2.0.pdf
+
+anssi guide authentification multifacteur et mots de passe
+https://cyber.gouv.fr/sites/default/files/2021/10/anssi-guide-authentification_multifacteur_et_mots_de_passe.pdf
+
+OWASP Cheat sheet Series
+https://cheatsheetseries.owasp.org/index.html
+
+Recommandations pour la sécurisation des sites web
+https://cyber.gouv.fr/sites/default/files/IMG/pdf/NP_Securite_Web_NoteTech.pdf
+
+guide pratique RGPD
+https://www.cnil.fr/sites/cnil/files/2024-03/cnil_guide_securite_personnelle_2024.pdf
+
+Authetification SQL Server
+https://www.datasunrise.com/fr/centre-de-connaissances/authentification-sql-server/?utm_source=chatgpt.com
+
+Consequeces de la sécurité
+https://www.teamcolab.com/insights/the-consequences-of-compromised-website-security-and-how-to-protect-your-company/
