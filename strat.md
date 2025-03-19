@@ -117,7 +117,7 @@ SQLi : L’attaque SQL injection consiste à envoyer une requête pas prévu par
 
 LFI/RFI : L’attaque Local/Remote File Inclusion consiste à trouver un moyen d’accédé à un fichier local ou distant sur le site normalement pas accessible pour une personne n’ayant pas les droits 
 
- 
+Ddos: l'attaque Ddos consiste a fiare un grand nombre de demande automatisé au serveur pour le surchargés et pertubé l'utilisation des autre utilisateur en ralentissant voir rendre incapable au serveur de répondre au demande.    
 
 XXE : L’attaque XML External Entity  consiste à injecter du XML mal pour exécuter ce code et obtenir des accès normalement impossibles. 
 
@@ -295,7 +295,7 @@ Le back-end d'un site web est l'endroit ou toutes les informations transit, du f
 
 Toutes demandes envoyer par un utilsateur doivent etre vérifier, par exemple dans la barre de recherche de pire2pire pour par exemple trouver une formation, on doit vérifier s'il y a pas de code Html,JS ou des requetes SQL dans la demande envoyé
 
-Dans le cas de l'accée à une autre une page, on doit vérifier si l'utilisateur à le droit d'accés a cette page, avec l'authentification et les jetons JWT.
+Dans le cas de l'accée à une autre une page, on doit vérifier si l'utilisateur à le droit d'accés a cette page, avec l'authentification et les jetons JWT, le but étant d'éviter que une personne comme un visiteur ne puisse faire des dégàt sur le site en accédent à des endroit où il n'a pas le droit.
 
 Si il n'a pas le droit et il arrive à trouver la page juste en cherchant le chemin, ceci est l'attaque LFI dont on avait parler plus, et la vérification des droit est le moyen de les bloquée.
 
@@ -323,7 +323,7 @@ on traite les données reçu, on les déchiffre et on les formate pour les rendr
 
 ## Mot de passe
 
-Le mot de passe est une important pour authentification et la sécurité du site, car il étape important pour savoir le role dée l'utilsateur et et à qu'elle donnée il a le droit d'accées, il est donc primordiale de le protéger
+Le mot de passe est une important pour authentification et la sécurité du site, car il étape important pour savoir le role de l'utilsateur et à qu'elle donnée il a le droit d'accées, il est donc primordiale de le protéger
 
 ### Menace
 
@@ -370,7 +370,7 @@ l'utilisateur pourra cliqué sur le lien pour choisir un nouveau mot de passe
 on garde en mémoire le hache des 5 derniers mot de passe pour dire à l'utilisateur qu'ils ne sont pas réalisable, on fait cela en cas d'attaque pour éviter qu'un utilsateur réutilise en mode de passe qu'il a l'habitude qui peut etre compromie.
 
 
-## Pour les role plus important
+## Pour les roles plus important
 
 Dans le cas des employers de pire2pire qui ont accées a des information importante, on précaunise une authenfication plus forte, avec un facteur de possesion, après l'entrée du mode de passe confirmé, un SMS qui envoie un code sera envoyé, l'employé devra entré ce code pour ce connecté 
 
