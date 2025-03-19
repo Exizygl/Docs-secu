@@ -189,7 +189,6 @@ Bien sûr cette clé demande alors de n’être pas facilement accessible, on ut
  
 
  
-
 ## Les clés d’encryptage 
 
 Dans un système de gestion de clé des bonnes pratiques pour l’accès doivent être utilisé, le moindre privilège, la clé doit être utilisé qu’un certain temps, le délai par défaut conseiller est 90 jours, nous allons donc utiliser ce délai pour pire2pire.com, au bout de ses 90 jours une rotation de la clé d’encryptage du site devrait être faites pour le déchiffrage des données et les encryptés de nouveau avec la nouvelle clé. 
@@ -365,14 +364,14 @@ Dans le cas des employers de pire2pire qui ont accées a des information importa
 
 une autre sécuriter que l'on peut mettre est une durée de vie pour un mot de passe, la personne devra changer sont mot de passe tous les mois.
 
-# JWT
+## JWT
 
 le JWT est un token générer lors de l'identification, il est envoyer coté de manière sécurisé pour l'identification, il est conserver de manière sécurisé du coté client  et il est envoyé à chaque foit qu'un appel à l'api est fait, il permet de prouvé que le client est bien lui meme et évoter des attaques CSRF.
 
 On va mettre une durée d'expiration de 10h sur ce token, ce qu forcera les utilisateur à ce reconnecté le lendemain
 af
 
-# WAF
+## WAF
 
 Le WAF est un web application firewall, il se situe entre le client et l'api protège l'api des attaques, il permet de protéger des attaques SQLi,  XXS et les attaque de type DDos et d'analysé les requette https
 
@@ -399,18 +398,20 @@ On utilisera aussi les mesures de HSTS pour forcer tout accé en HTTPS et aucun 
 On utilisera aussi les certificats TLS pour indiquer que le site est sur et il seront surveiller par le certificate transparacy, le but des certificats et de prouver que le site est reconnu comme sûr et ne pas avoir des problèmes avec les navigateurs et le ressancement.
 
 
-# SOP
+## SOP
 
 Le SOP(same-origin Policy) est une regle utilisé par défaut pour protéger où arrive les données.
 
 Le but étant que tout transfaire vers un autre cite non autorisé ne sois pas possible et que les information sensible comme les cookie et les identifiant ne soit pas lisible par une autre origine. cette mesure peut protéger des attack XSS et CSRF.
 
-# CORS
+## CORS
 
 Le Cross-Origin Resource Sharing  on l'utilisera pour contourner le SOP quand on en aura besoin d'accedé à d'autre origin que la notre
-comme par exemple pour des video youtube créer par pire2pire.com
+comme par exemple pour des video youtube créer par pire2pire.com.
 
-# CSP
+Le cors permet aussi d'utilisé les préflight, ou une vérification que la demande est conforme et autorisé est faite avant son execution 
+
+## CSP
 
 le CSP est une politique de sécurité que nous allons utilisé en complément de Cors pour controler l'activité venant d'autre origin, si Cors consiste a dire avec qui on peut communiqué, CSP est la pour dire avec qui ont ne peut pas communiqué.
 
@@ -426,7 +427,7 @@ Le CSP peut également bloqué les orgine d'execution du JS, en autorisant seule
 
 Toutes c'est fonctionnalité seront utilsé pour le site pire2pire.com
 
-# Referrer Policy
+## Referrer Policy
 
 Le referrer policy est une politique de sécurité qui nous permet de controler l'URL qui passe dans l'entete qunad un utilisateur click sur un lien.
 
@@ -434,7 +435,7 @@ Cela nous permet de par exemple voirde quel page vient l'utilsateur, dans le cad
 
 Dans le cas de pire2pire on envera seulement le domaine vers d'autre origin.
 
-# stockage de donnée coté client
+## stockage de donnée coté client
 
 il y a plusieurs moyen de stocké des donnée coté utilisateur
 
@@ -449,7 +450,7 @@ Les cookies par contre ont des options de protection, on peut limité leur accé
 Les cookie sont donc la solution que nous allons utilisé pour l'authentifictaion en gardant qui est la persone dedans ainsi que son JWT token, en utilisant tous les option de security et une date d'expiration.
 
 
-# sécuriter des information envoyé depuis le client
+## sécuriter des information envoyé depuis le client
 
 L'utilisateur va envoyer des information a travers des formulaires, c'est informations devront etre vérifier pour vois si elles sont conforme à ce qu'on s'attend.
 
@@ -457,7 +458,7 @@ En plus de c'est vérification on doit vérifier que les donnée ne soit pas dan
 
 L'envoie d'une requette peut etre une requete détourné par un site piégé envoyer a l'utilisateur pour éviter cela nous allos utiliser des token CRSF, le token sera normalement généré quand l'utilisateur arrive sur la page, il sera conservé dans la session et mit en valeur caché dans le formulaire, on pourra les comparer lors de l'envoi du formulaire pour voir si c'est vraiment une requete venant dans utilisateur utilsant la méthode normal ou une attque CSRF pour mannipulé les crédential de l'utilisateur.
 
-# Appel au Api
+## Appel au Api
 
 Tou appel vers une api sera fait avect fetch XMLhttprequest étant plus sensible au attaque XSS.
 
@@ -465,11 +466,20 @@ Fetch a un meilleur support avec le CSP et le CORS, mais aaussi la possibilité 
 
 Nous utiliserons alors la méthode fetch pour le site
 
-# Iframe
+## Iframe
 
-Dans le site, l'incrustration de vidéo youtube peut etre utilisé pour un autre support au étudiant.
+Dans le site, l'incrustation de vidéo youtube peut etre utilisé pour un autre support au étudiant.
 
 Nous pouvons isoler c'est video youtube pour que le domaine youtube est zero accés à ce qui se passe, cela permetra d'empecher le 2eme domaine que l'on fait apparaitre sur la page de, soummetre des formulair, executer du code accéder au info protéger par le SOP, accéder au DOM.
 
 Ainsi on peut utiliser les avantage de foncion d'autre site sans mettre en danger la sécurité de pire2pire.com
 
+## Protection contre les injections de codes
+
+### web worker 
+
+On peut utiliser les web worker pour l'éxucution du code javascript dans un environnement séparee, sans qu'il ne puisse  affecter le DOM directement, cela nous permet de faire de l'execution de de code JS avec plus de sécuriter.
+
+Nous devons quand meme faire des vérifications sur ce qui rentre dans le web worker dans le web worker, ainsi ce qui sort avant de l'utilisé pour dans le DOM.
+
+Le CSP doit etre utilisé avec le web worker pour limiter les sources externes
