@@ -150,3 +150,97 @@ L’audit de la base de données est un journal de toutes les activités qui se 
 Il permet de se rendre compte de toutes les actions qui se passent dans la base. Il garde toutes les actions qui se passent, que ces actions soient réussies ou non, ainsi que l’heure de ces actions.  
 
 Cela permet de voir les tentatives qui se passent sur la base de données et surtout si ces attaques ont réussi, afin que l’on puisse examiner l’ampleur des dégâts et ainsi pouvoir prévenir et au mieux y remédier.  
+
+
+# Le Back
+
+Le back-end d'un site web est l'endroit où toutes les informations transitent, du front qui est vu par tous les utilisateurs à la base de données qui contient toutes les informations importantes que nous voulons protéger. Cela veut dire que c'est l'endroit où l'on va pouvoir faire le maximum de vérification.
+
+## Vérification des entrées
+
+Toutes les demandes envoyées par un utilisateur doivent être vérifiées. Par exemple, dans la barre de recherche de pire2pire, pour trouver une formation, on doit vérifier s'il n'y a pas de code HTML, JS ou des requêtes SQL dans la demande envoyée.
+
+Dans le cas de l'accès à une autre page, on doit vérifier si l'utilisateur a le droit d'accès à cette page, avec l'authentification et les jetons JWT. Le but étant d'éviter qu'une personne, comme un visiteur, puisse faire des dégâts sur le site en accédant à des endroits où il n'a pas le droit.
+
+Si l'utilisateur n'a pas le droit et arrive à trouver la page juste en cherchant le chemin, ceci est l'attaque LFI dont on a parlé plus tôt, et la vérification des droits est le moyen de la bloquer.
+
+On peut noter que cela inclut aussi le fait d'essayer de trouver des fichiers qui ne sont pas des pages à afficher, mais juste des fichiers utilisés pour le bon déroulement de l'application. Dans ce cas-là, nous allons bloquer tout caractère qui montre qu'on essaie de naviguer dans l'arborescence des fichiers.
+
+La vérification se fait aussi par l'origine des requêtes. Pire2pire n'étant pas une API ouverte, les requêtes devront être vérifiées dans l'en-tête HTTP pour s'assurer qu'elles viennent bien de pire2pire.com ou d'une autre source autorisée, par exemple les informations de transaction bancaire.
+
+Les entrées sont aussi celles venant d'autres sources que le front, que ce soit la base de données, la récupération de la clé d'encryption ou encore une autre API.
+
+Dans le cas de la base de données, il faut vérifier si les données reçues correspondent au format attendu de la requête envoyée.
+
+Le but de toutes ces vérifications est de limiter le nombre d'accès à l'API pour pouvoir surveiller et contrôler ce qui se passe.
+
+## Traitement des données et sortie des données
+
+Toutes les données qui passent dans l'API doivent être traitées après vérification pour leur sortie.
+
+Dans le cas des requêtes vers la base de données, par exemple la création d'un nouveau compte, les données doivent être vérifiées, préparées et encryptées avant d'être envoyées à la base de données. Dans le cas des mots de passe, il faudra les hacher en plus.
+
+Ensuite, tout est envoyé à l'ORM pour qu'il fasse lui-même la requête vers la base de données.
+
+Le cas inverse se passe aussi pour ce que l'on a reçu de l'ORM : on traite les données reçues, on les déchiffre et on les formate pour les rendre conformes aux besoins du front, le but étant d'éviter le traitement de données côté client.
+
+## Mot de passe
+
+Le mot de passe est important pour l'authentification et la sécurité du site, car c'est une étape importante pour déterminer le rôle de l'utilisateur et à quelles données il a droit d'accès. Il est donc primordial de le protéger.
+
+### Menaces
+
+Il y a plusieurs types de menaces sur les mots de passe :
+
+- **Attaques en ligne** : Le hacker essaie de passer outre les défenses du système pour avoir accès aux identifiants.
+  - **Attaque par force brute** : Le hacker essaie des mots de passe au hasard, potentiellement venant de dictionnaires de mots de passe avec des tests automatisés.
+  - **Attaque par protocole d'authentification** : Le hacker intercepte des données d'identification par un transfert non sécurisé ou vole un token pour se faire passer pour l'utilisateur.
+  - **Vol du moyen d’authentification** : Le mot de passe est volé, soit par un bout de papier, par hameçonnage, etc.
+
+### Sécurité du mot de passe
+
+Dans le cas de pire2pire.com, les facteurs d'authentification seront des facteurs de connaissance.
+
+Nous devons protéger le mot de passe de la meilleure façon possible. Il y a plusieurs mesures que l'on peut mettre en place :
+
+- **La complexité du mot de passe** : Le mot de passe ne doit pas être trop simple. Il doit être assez long et avoir des caractères assez diversifiés pour se protéger contre les attaques par force brute. Il est donc conseillé de mettre une taille minimum de 10 caractères avec au moins une majuscule, une minuscule, un chiffre et un caractère spécial.
+  
+- **Le hachage** : Avant d'être encrypté, le mot de passe doit être masqué en le hachant avec un algorithme de hachage comme Bcrypt. On y rajoute un sel pour assurer la sécurité et protéger contre les attaques de rainbow table.
+
+- **Limitation du nombre de tentatives** : Quand un nombre de 10 tentatives a été essayé, l'utilisateur sera bloqué pour une dizaine de minutes, avec comme seul recours le changement de mot de passe.
+
+- **Détection des motifs simples** (12345, date d'anniversaire, etc.)
+
+*Note : On ne dira jamais lors d'un échec si l'email ou le mot de passe est faux.*
+
+### Changement de mot de passe
+
+Le changement de mot de passe est une étape nécessaire dans toute application pour éviter de perdre des utilisateurs qui ont perdu l'accès à leur compte.
+
+Le changement de mot de passe se fait en demandant l'email de l'utilisateur. On ne confirme pas si un compte correspond à l'email ou non pour éviter qu'un hacker puisse faire une liste de comptes existants sur le site.
+
+Un token sera généré avec une durée de 15 minutes. Il sera envoyé dans un lien par email à l'utilisateur.
+
+L'utilisateur pourra cliquer sur le lien pour choisir un nouveau mot de passe.
+
+## Restriction des derniers mots de passe
+
+On garde en mémoire le hachage des 5 derniers mots de passe pour dire à l'utilisateur qu'ils ne peuvent pas être réutilisés. Cela sert en cas d'attaque pour éviter qu'un utilisateur réutilise un mot de passe qu'il a l'habitude de changer, et qui pourrait être compromis.
+
+## Pour les rôles plus importants
+
+Dans le cas des employés de pire2pire qui ont accès à des informations sensibles, on préconise une authentification plus forte, avec un facteur de possession. Après l'entrée du mot de passe confirmé, un SMS contenant un code sera envoyé. L'employé devra entrer ce code pour se connecter.
+
+Une autre sécurité que l'on peut mettre en place est une durée de vie limitée pour un mot de passe. La personne devra changer son mot de passe tous les mois.
+
+## JWT
+
+Le JWT est un token généré lors de l'identification. Il est envoyé côté client de manière sécurisée pour l'identification. Il est conservé de manière sécurisée côté client et est envoyé à chaque fois qu'un appel à l'API est effectué. Il permet de prouver que le client est bien lui-même et d'éviter des attaques CSRF.
+
+On mettra une durée d'expiration de 10 heures sur ce token, ce qui forcera les utilisateurs à se reconnecter le lendemain.
+
+## WAF
+
+Le WAF (Web Application Firewall) se situe entre le client et l'API et protège l'API des attaques. Il permet de protéger contre les attaques SQLi, XSS et les attaques de type DDoS, et d'analyser les requêtes HTTPS.
+
+On peut le configurer pour qu'il laisse passer uniquement les requêtes voulues et qu'il bloque les requêtes malveillantes.
