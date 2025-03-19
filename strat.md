@@ -476,6 +476,13 @@ Ainsi on peut utiliser les avantage de foncion d'autre site sans mettre en dange
 
 ## Protection contre les injections de codes
 
+
+### Strict mode
+
+Toutes utilisation des Javascript sera fera avec l'activation du strict mode de JS, le strict force des meilleur pratique de codage, avec ce mode des simples erreur lors de l'excution du code bloqueront son avancement.
+
+L'ajout de ce mode peut bloqué le code injecter lors  d'une XSS attack
+
 ### web worker 
 
 On peut utiliser les web worker pour l'éxucution du code javascript dans un environnement séparee, sans qu'il ne puisse  affecter le DOM directement, cela nous permet de faire de l'execution de de code JS avec plus de sécuriter.
