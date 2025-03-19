@@ -354,3 +354,7 @@ Le **CSP** doit être utilisé avec le **Web Worker** pour limiter les sources e
 ### Template String
 
 Lorsque l'on reçoit des informations, on peut utiliser les fonctions d'échappement des **template strings** pour remplacer les caractères qui indiquent des fonctionnalités de code. Le navigateur comprendra qu'il devra afficher les caractères initiaux lors de l'affichage, mais ils ne seront pas reconnus comme du code lors de l'exécution.
+
+# Conclusion
+
+Nous allons mettre en place toutes ces mesures dans le but de respecter la réglementation, mais aussi éviter toute forme de dégât sur pire2pire et donner la meilleure expérience utilisateur à toutes les personnes qui interagiront avec le site, que ce soit des visiteurs, des étudiants ou bien encore des employés de pire2pire.
