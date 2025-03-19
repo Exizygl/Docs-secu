@@ -27,3 +27,30 @@ A poorly secured website can cause a lot of harm. Here is a list of dangers that
 ## Organization of the documentation
 
 This document will present the different types of dangers that may occur during the lifetime of the site. We will then explain how these problems will be stopped. Finally, we will detail all the protections in each section of the documentation, from the database to the front.
+
+# RGPD
+
+Le Règlement Général sur la Protection des Données (RGPD) est une réglementation de l'Union européenne que le site devra suivre et appliquer. Il se concentre sur le traitement des données personnelles et donne plus de contrôle aux utilisateurs.
+
+Nous devrons donc :
+
+- **Consentement** : Demander le consentement clair et explicite de l'utilisateur avant toute collecte de données.
+- **Droits** : L'utilisateur a le droit d'accéder aux informations récoltées, de les rectifier, le droit à la portabilité, le droit d'opposition au traitement des données ainsi que le droit à l'oubli.
+- **Responsabilité** : Nous avons l'obligation de protéger ces données, ce dossier étant une explication des mesures techniques que nous mettrons en place.
+- **Notification** : Toute violation de données doit être signalée aux autorités dans les 72 heures suivant la détection.
+
+En cas de non-conformité avec la réglementation, l'entreprise peut recevoir une amende allant jusqu'à **20 millions d'euros ou 4 % du chiffre d'affaires mondial**.
+
+---
+
+# Type d'attaques rencontrées
+
+Ici, nous allons présenter les différents types d’attaques que ce guide a pour but de prévenir :
+
+- **XSS** : L'attaque *Cross-Site Scripting* consiste à injecter du code (JavaScript ou HTML) dans une page web pour obtenir un comportement visé lorsque ce code sera exécuté. Le but est de récupérer des informations sur les utilisateurs d'un site.
+- **CSRF** : L'attaque *Cross-Site Request Forgery* consiste à tromper un utilisateur pour le forcer à effectuer une action voulue sur un site donné depuis un site tiers. Par exemple, envoyer une requête cachée à `pire2pire.com` en interagissant sur un site créé par l'attaquant.
+- **SSRF** : L'attaque *Server-Side Request Forgery* consiste à demander au serveur d'effectuer des requêtes vers une destination choisie par l'attaquant, en profitant éventuellement des privilèges du serveur.
+- **SQLi** : L'attaque *SQL injection* consiste à envoyer une requête non prévue par les fonctions du site ou les droits d'utilisateur pour affecter la base de données. Cela donne la possibilité à l'attaquant de faire ce qu'il veut.
+- **LFI/RFI** : L'attaque *Local/Remote File Inclusion* consiste à trouver un moyen d'accéder à un fichier local ou distant sur le site normalement pas accessible pour une personne n'ayant pas les droits.
+- **DDoS** : L'attaque *Distributed Denial of Service* consiste à envoyer un grand nombre de demandes automatisées au serveur pour le surcharger et perturber l'utilisation des autres utilisateurs, en ralentissant voire en rendant le serveur incapable de répondre aux demandes.
+- **XXE** : L'attaque *XML External Entity* consiste à injecter du XML malveillant pour exécuter ce code et obtenir des accès normalement impossibles.
