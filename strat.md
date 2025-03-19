@@ -482,4 +482,8 @@ On peut utiliser les web worker pour l'éxucution du code javascript dans un env
 
 Nous devons quand meme faire des vérifications sur ce qui rentre dans le web worker dans le web worker, ainsi ce qui sort avant de l'utilisé pour dans le DOM.
 
-Le CSP doit etre utilisé avec le web worker pour limiter les sources externes
+Le CSP doit etre utilisé avec le web worker pour limiter les sources externes.
+
+### Template string
+
+Lorsque l'on recoit des informations on peut utilisé les fonction d'échappement des templates string  pour remplacé les characters qui indique des fonctionnalités de code, pour Le navigateur comprendra qu'il devra affiché les characters initial lors de l'affichage mais ils ne seront pas reconnu comme du code dans lors de l'execution. 
