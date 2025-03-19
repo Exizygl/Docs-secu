@@ -41,10 +41,6 @@
     - HTML annd JS
 
 
-
-
-
-
 # Introduction 
 
  
@@ -79,6 +75,22 @@ In the worst-case scenario the host of the site may shit-down the website
  	This document will present the different type of danger that may happen during the lifetime of the site we will then present the different how those problem will be stop, then we will detail all the protection we will in each part of the documentation from the database to the front 
 
  
+# RGPD
+ Le Règlement Général sur la Protection des Données(RGPD) est une reglemenation de l'union européen que le site devra suivre et appliquer, il se concentre le traitement des données personnel est donne plus de controle au utilisateur.
+
+ Nous devrons donc:
+
+    - Consentement: demandé le conce,tement claire et explicite au utilsateur avant toutes collecte de donnée.
+
+    -Droit: L'utilisateur a le droit d'accéder  au information récoltét, de les rectifier, le droit de portabilité,  le droit d'opposition du traitement des donnée ainsi que le droit à l'oubli
+
+    - La responsabilité: on a l'obligation de protéger c'est donnée, ce dossier étant une explication de qu'elle messure on va mettre d'un point technique.
+
+    - la notification : toutes violation  de donnée doit etre informer au authorité dans les prochaine 72h
+
+En cas de non-conformité avec la Réglémenation, l'entreprise  peut  recevoir une amende entre 20 millions d'euros et 4% du chiffre d'affaire mondial 
+
+
 # Type d'attaques rencontrer 
 
  
