@@ -95,21 +95,21 @@ Les rôles demandant un identifiant et un mot de passe pour se connecter, les bo
 
 UUID est l’Universel Unique Identifier. Contrairement au UID qui utilise l’incrémentation pour se différencier, le UUID est utile pour éviter qu’un hacker puisse, au hasard, trouver un ID lors de son attaque.  
 
-L’UUID se présente sous la forme de 32 chiffres hexadécimaux, ce qui rend le nombre énorme avec un nombre de variantes paraissant presque infini.  
+L’UUID se présente sous la forme de 36 chiffres hexadécimaux, ce qui rend le nombre énorme avec un nombre de variantes paraissant presque infini.  
 
 Si l’attaquant se retrouve en position où il doit trouver un ID pour son attaque, que ce soit pour voler des données ou tenter une attaque LFI par l’URL, l’UUID permet de rendre cette tâche presque impossible.  
 
-## Encryptions  
+## Chiffrement 
 
-L’encryption est le fait de transformer les données pour qu’elles soient illisibles à toute personne qui arrive à voler les données.  
+Le chiffrement est le fait de transformer les données pour qu’elles soient illisibles à toute personne qui arrive à voler les données.  
 
 Elle fonctionne avec une clé qui permet de décrypter les données quand les vérifications montrent que la demande est légitime.  
 
 Bien sûr, cette clé demande alors de ne pas être facilement accessible. On utilise un système de gestion de clés pour qu’elle soit dans un endroit sécurisé.  
 
-## Les clés d’encryptage  
+## Les clés de chiffrement
 
-Dans un système de gestion de clés, des bonnes pratiques pour l’accès doivent être utilisées. Le moindre privilège, la clé doit être utilisée pendant un certain temps, le délai par défaut conseillé est de 90 jours. Nous allons donc utiliser ce délai pour pire2pire.com. Au bout de ces 90 jours, une rotation de la clé d’encryptage du site devrait être faite pour le déchiffrage des données et les encrypter de nouveau avec la nouvelle clé.  
+Dans un système de gestion de clés, des bonnes pratiques pour l’accès doivent être utilisées. Le moindre privilège, la clé doit être utilisée pendant un certain temps, un délai de 90 jours sera appliqué. Nous allons donc utiliser ce délai pour pire2pire.com. Au bout de ces 90 jours, une rotation de la clé de chiffrement du site devrait être faite pour le déchiffrage des données et les chiffrer de nouveau avec la nouvelle clé.  
 
 ### Le cycle de vie d’une clé :  
 
