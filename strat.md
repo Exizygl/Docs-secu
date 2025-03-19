@@ -506,3 +506,8 @@ Le CSP doit etre utilisé avec le web worker pour limiter les sources externes.
 ### Template string
 
 Lorsque l'on recoit des informations on peut utilisé les fonction d'échappement des templates string  pour remplacé les characters qui indique des fonctionnalités de code, pour Le navigateur comprendra qu'il devra affiché les characters initial lors de l'affichage mais ils ne seront pas reconnu comme du code dans lors de l'execution. 
+
+
+# Conclusion
+
+Nous allons mettre en place toute c'est mesure dans le bute de respecté la réglementation, mais aussi éviter toutes forme de dégat sur à pire2pire et donnée la meilleur experience utilisateur à tous les personnes qui i vont inérargire avec le site, que se soit des visieut, des étudiant ou bien encore des employés de pire2pires.
