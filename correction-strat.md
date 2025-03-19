@@ -388,3 +388,15 @@ https://www.datasunrise.com/fr/centre-de-connaissances/authentification-sql-serv
 
 Consequeces de la sécurité
 https://www.teamcolab.com/insights/the-consequences-of-compromised-website-security-and-how-to-protect-your-company/
+
+UUID
+https://laconsole.dev/blog/comprendre-uuid
+
+Clé
+https://www-encryptionconsulting-com.translate.goog/education-center/what-is-key-management/?_x_tr_sl=en&_x_tr_tl=fr&_x_tr_hl=fr&_x_tr_pto=rq
+
+Podcast
+https://youtu.be/zVu-KEO8hps?si=neskin2KKLl-ZP1G
+
+MDM web docs
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides
